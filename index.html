@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>buygoodthing 好物清單</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light dark;
+--bg:light-dark(#e6f7f2,#0f2a33);--band:light-dark(#7ed6c3,#16414a);--card:light-dark(#ffffff,#18343d);
+--ink:light-dark(#1b2a4a,#eef6f4);--soft:light-dark(#5a6678,#a9bcc2);--line:light-dark(#d5e7e2,#2a4a53);
+--price:light-dark(#e8602c,#ff9a6b);--chip:light-dark(#eef8f5,#21444d);--btn:light-dark(#1b2a4a,#7ed6c3);--btnink:light-dark(#ffffff,#0f2a33);
+--gold:#ffc43d;--new:light-dark(#ff7a8a,#ff9aa8)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Noto Sans TC",system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+.top{background:var(--band);padding:28px max(5vw,16px) 0;position:relative}
+.hero{max-width:560px;margin:0 auto;display:grid;justify-items:center;text-align:center}
+.mascot{width:min(52vw,220px);height:auto;display:block;filter:drop-shadow(0 10px 0 rgba(27,42,74,.12))}
+.shelf{width:100%;max-width:560px;height:18px;margin:-6px auto 0;border-radius:6px 6px 0 0;background:light-dark(#1b2a4a,#0b1f26)}
+h1{font-size:clamp(30px,8vw,44px);line-height:1.05;margin:14px 0 6px;font-weight:900;text-wrap:balance}
+.tag{margin:0 0 14px;font-weight:500;color:light-dark(#1b2a4a,#d6efe9)}
+.social{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:0 0 20px}
+.social a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:var(--card);color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 4px 0 rgba(27,42,74,.15)}
+.social svg{width:20px;height:20px}
+.social a:focus-visible{outline:3px solid var(--price);outline-offset:2px}
+main{max-width:560px;margin:0 auto;padding:22px max(4vw,14px) 40px}
+.tools{position:sticky;top:0;background:var(--bg);z-index:2;padding-top:12px}
+.search{width:100%;min-height:46px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:500 16px "Noto Sans TC",sans-serif;padding:0 14px}
+.search:focus-visible{outline:3px solid var(--price);outline-offset:1px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 2px 12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;min-height:44px;padding:0 16px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:700 15px "Noto Sans TC",sans-serif;cursor:pointer}
+.tabs button small{font-weight:500;opacity:.75;margin-left:4px}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.tabs button:focus-visible,.go:focus-visible{outline:3px solid var(--price);outline-offset:2px}
+.count{color:var(--soft);font-size:14px;margin:4px 2px 14px}
+.list{display:grid;gap:16px}
+.card{background:var(--card);border-radius:20px;padding:20px 20px 18px 20px;position:relative;box-shadow:0 6px 0 var(--line);display:grid;gap:8px}
+.card::before{content:"";position:absolute;top:18px;right:18px;width:14px;height:14px;border-radius:50%;background:var(--bg);box-shadow:inset 0 2px 0 var(--line)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.cat{font-size:13px;font-weight:700;padding:3px 12px;border-radius:999px;background:var(--chip);color:var(--ink)}
+.isnew{font-size:13px;font-weight:900;padding:3px 10px;border-radius:999px;background:var(--new);color:#fff}
+.name{font-size:20px;line-height:1.3;font-weight:900;margin:0;padding-right:28px}
+.fit{margin:0;color:var(--soft);font-size:15px}
+.min{margin:0;font-size:14px;font-weight:700;color:var(--ink)}
+.row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:4px}
+.price{font-size:clamp(28px,8vw,34px);font-weight:900;color:var(--price);line-height:1;white-space:nowrap}
+.price small{font-size:.5em;margin-left:2px}
+.sold{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;background:var(--gold);color:#1b2a4a;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.go{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;border-radius:14px;background:var(--btn);color:var(--btnink);text-decoration:none;font-weight:900;font-size:16px;white-space:nowrap}
+.go svg{width:18px;height:18px}
+.empty{text-align:center;color:var(--soft);padding:30px 0}
+.note{margin-top:28px;padding:16px 18px;border-radius:16px;border:2px dashed var(--line);font-size:14px;color:var(--soft)}
+.note b{color:var(--ink)}
+footer{text-align:center;font-size:13px;color:var(--soft);padding:0 16px 32px}
+@media (prefers-reduced-motion:no-preference){.mascot{animation:bob 3.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-6px)}}}
+</style>
+</head>
+<body>
+<header class="top">
+<div class="hero">
+<svg class="mascot" viewBox="100 120 440 400" role="img" aria-label="笑臉購物袋吉祥物">
+<path d="M150 162 Q156 184 178 190 Q156 196 150 218 Q144 196 122 190 Q144 184 150 162 Z" fill="#FFC43D"/>
+<path d="M500 140 Q505 160 525 165 Q505 170 500 190 Q495 170 475 165 Q495 160 500 140 Z" fill="#FFC43D"/>
+<path d="M512 400 Q518 422 540 428 Q518 434 512 456 Q506 434 484 428 Q506 422 512 400 Z" fill="#FFC43D"/>
+<path d="M252 236 Q252 150 320 150 Q388 150 388 236" fill="none" stroke="#1b2a4a" stroke-width="18" stroke-linecap="round"/>
+<rect x="176" y="222" width="288" height="270" rx="44" fill="#ffffff" stroke="#1b2a4a" stroke-width="10"/>
+<rect x="196" y="236" width="248" height="26" rx="13" fill="#7ed6c3" opacity=".45"/>
+<ellipse cx="274" cy="332" rx="15" ry="19" fill="#1b2a4a"/><ellipse cx="366" cy="332" rx="15" ry="19" fill="#1b2a4a"/>
+<circle cx="279" cy="324" r="5.5" fill="#fff"/><circle cx="371" cy="324" r="5.5" fill="#fff"/>
+<ellipse cx="240" cy="376" rx="24" ry="13" fill="#FF9AA2"/><ellipse cx="400" cy="376" rx="24" ry="13" fill="#FF9AA2"/>
+<path d="M298 366 Q320 394 342 366" fill="none" stroke="#1b2a4a" stroke-width="8" stroke-linecap="round"/>
+<path d="M320 458 C298 438 288 422 303 410 C311 404 320 409 320 418 C320 409 329 404 337 410 C352 422 342 438 320 458 Z" fill="#FF7A8A" stroke="#1b2a4a" stroke-width="5" stroke-linejoin="round"/>
+</svg>
+<h1>buygoodthing 好物清單</h1>
+<p class="tag">影片裡介紹過的蝦皮好物都在這，依分類找、點了直接去下單</p>
+<nav class="social" aria-label="社群帳號">
+<a href="https://www.instagram.com/buygoodthing/" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+IG @buygoodthing</a>
+<a href="https://www.tiktok.com/@buygoodthing_with.me" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M14 3c.4 2.6 2.2 4.3 5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+TikTok @buygoodthing_with.me</a>
+</nav>
+</div>
+<div class="shelf" aria-hidden="true"></div>
+</header>
+
+<main>
+<div class="tools">
+<input class="search" id="q" type="search" placeholder="搜尋商品，例如：魚油、眼罩" aria-label="搜尋商品">
+<nav class="tabs" id="tabs" aria-label="商品分類"></nav>
+</div>
+<p class="count" id="count" aria-live="polite"></p>
+<div class="list" id="list"></div>
+<p class="note"><b>小提醒：</b>價格、銷量與最低購買量為整理當下的資料，實際金額以蝦皮賣場為準。</p>
+</main>
+<footer>IG：buygoodthing · TikTok：buygoodthing_with.me · 持續更新好物清單</footer>
+
+<script>
+{
+const items=[
+{cat:"生活小物",name:"持久發熱 日本蒸氣眼罩（多種香味）",price:8,from:true,sold:"月銷 2萬+",fit:"想一次囤貨、睡前放鬆",min:"15 片起購",isNew:true,url:"https://s.shopee.tw/Lp2X87ls9"},
+{cat:"生活小物",name:"隔日到貨 單片包裝蒸氣眼罩",price:6,from:true,sold:"月銷 3萬+",fit:"午休、出差想隨身帶",min:"30 片起購",isNew:true,url:"https://s.shopee.tw/4LLBIV0BOd"},
+{cat:"美容儀",name:"medicube AGE-R Booster PRO X2 智慧多功能美容儀",price:7500,sold:"月銷 1,000+",fit:"想一台搞定多種保養模式",url:"https://s.shopee.tw/6q2TwB2wlx"},
+{cat:"美容儀",name:"medicube AGE-R Booster Cleanser 智能潔面儀",price:4199,sold:"月銷 1,000+",fit:"每天洗臉想洗得更乾淨",url:"https://s.shopee.tw/3g5SAMWBkY"},
+{cat:"美容儀",name:"medicube AGE-R Booster Pro Mini Plus 迷你美容儀",price:3600,sold:"月銷 508",fit:"想入手 medicube 但預算少一點",url:"https://s.shopee.tw/gRqar06NA"},
+{cat:"美容儀",name:"可視化黑頭儀（現貨隔日達）",price:428,sold:"月銷 246",fit:"想清楚看到粉刺清潔過程",url:"https://s.shopee.tw/2BGeNcYKhe"},
+{cat:"美容儀",name:"黑頭美容儀 毛孔清潔儀（隔日達・附發票）",price:398,sold:"月銷 123",fit:"小資入門的毛孔清潔小物",url:"https://s.shopee.tw/2VtUmEoasP"},
+{cat:"保健",name:"天然保健所 極淨魚油（濃度 95% 以上）",price:1380,sold:"已售 20萬+",fit:"想要高濃度的人",url:"https://s.shopee.tw/6L6DLCkXpx"},
+{cat:"保健",name:"rTG 挪威魚油 Omega-3（60 顆）",price:528,sold:"已售 1萬+",fit:"重視 CP 值的人",url:"https://s.shopee.tw/6q2Tw8d0rb"},
+{cat:"保健",name:"rTG 超臨界專利深海魚油（小顆）",price:379,sold:"已售 3萬+",fit:"預算有限的小資族",url:"https://s.shopee.tw/8fU87WJbC3"},
+{cat:"寵物",name:"博朗氏 貓飼料 6 公斤",price:549,sold:"已售 1,000+",fit:"多貓家庭、想要大包划算",url:"https://s.shopee.tw/gRqat7GhW"},
+{cat:"寵物",name:"Halo 嘿囉 無穀貓飼料 300g",price:169,sold:"已售 2,000+",fit:"先買小包試吃的挑嘴貓",url:"https://s.shopee.tw/AAIvuLoq4x"}
+];
+const cats=["全部",...new Set(items.map(i=>i.cat))];
+const ids={"全部":"all","生活小物":"daily","美容儀":"beauty","保健":"health","寵物":"pets"};
+const tabs=document.getElementById("tabs"),list=document.getElementById("list"),count=document.getElementById("count"),q=document.getElementById("q");
+let cur="全部";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const arrow='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+tabs.innerHTML=cats.map(c=>{const n=c==="全部"?items.length:items.filter(i=>i.cat===c).length;return `<button type="button" data-cat="${esc(c)}" aria-pressed="false">${esc(c)}<small>${n}</small></button>`}).join("");
+function show(){
+const kw=q.value.trim().toLowerCase();
+const rows=items.filter(i=>(cur==="全部"||i.cat===cur)&&(!kw||(i.name+i.cat+i.fit).toLowerCase().includes(kw)));
+for(const b of tabs.children)b.setAttribute("aria-pressed",String(b.dataset.cat===cur));
+count.textContent=`共 ${rows.length} 樣好物`;
+list.innerHTML=rows.length?rows.map(i=>`<article class="card">
+<div class="chips"><span class="cat">${esc(i.cat)}</span>${i.isNew?'<span class="isnew">NEW</span>':""}</div>
+<h2 class="name">${esc(i.name)}</h2>
+<p class="fit">適合：${esc(i.fit)}</p>
+${i.min?`<p class="min">＊${esc(i.min)}</p>`:""}
+<div class="row"><div><div class="price">$${i.price.toLocaleString("en-US")}${i.from?"<small>起</small>":""}</div><span class="sold">${esc(i.sold)}</span></div>
+<a class="go" href="${esc(i.url)}" target="_blank" rel="noopener sponsored">去蝦皮下單 ${arrow}</a></div>
+</article>`).join(""):'<p class="empty">找不到符合的商品</p>';
+}
+function fromHash(){const h=location.hash.slice(1);return Object.keys(ids).find(k=>ids[k]===h)||"全部"}
+tabs.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cur=b.dataset.cat;show();try{history.replaceState(null,"","#"+ids[cur])}catch(_){}});
+q.addEventListener("input",show);
+window.addEventListener("hashchange",()=>{cur=fromHash();show()});
+cur=fromHash();show();
+}
+</script>
+</body>
+</html>
