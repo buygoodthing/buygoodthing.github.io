@@ -111,6 +111,7 @@ dialog::backdrop{background:rgba(15,30,40,.55)}
 <footer>IG：buygoodthing · TikTok：buygoodthing_with.me · 持續更新好物清單</footer>
 <dialog id="dlg" aria-labelledby="dname"><div class="dwrap"><button class="close" id="dclose" aria-label="關閉">×</button><div id="dcontent"></div></div></dialog>
 <script src="img.js"></script>
+<script src="img2.js"></script>
 <script>
 {
 const IMG=window.IMG||{};
@@ -120,13 +121,13 @@ const items=[
 {"cat": "美容儀", "name": "medicube AGE-R Booster PRO X2 智慧多功能美容儀", "price": 7500, "sold": "月銷 1,000+", "fit": "想一台搞定多種保養模式", "url": "https://s.shopee.tw/6q2TwB2wlx", "intro": "medicube 官方旗艦店的多功能美容儀，一台內建多種保養模式，可搭配 App 使用（依賣場說明）。", "pts": ["多種模式可切換", "App 連動操作", "官方旗艦店販售"], "img": "px2"},
 {"cat": "美容儀", "name": "medicube AGE-R Booster Cleanser 智能潔面儀", "price": 3999, "sold": "月銷 1,000+", "fit": "每天洗臉想洗得更乾淨", "url": "https://s.shopee.tw/3g5SAMWBkY", "intro": "矽膠刷頭搭配震動的洗臉機，有日常、深層、溫和 3 種模式，可依當天膚況切換。", "pts": ["3 種清潔模式", "細軟矽膠刷毛", "官方旗艦店販售"], "img": "cleanser"},
 {"cat": "美容儀", "name": "medicube AGE-R Booster Pro Mini Plus 迷你美容儀", "price": 3600, "sold": "月銷 508", "fit": "想入手 medicube 但預算少一點", "url": "https://s.shopee.tw/gRqar06NA", "intro": "Booster 系列的迷你版本，體積小好收納，價格比 PRO X2 親民。", "pts": ["小巧好攜帶", "入門 medicube 的選擇", "官方旗艦店販售"], "img": "mini"},
-{"cat": "美容儀", "name": "可視化黑頭儀（現貨隔日達）", "price": 418, "sold": "月銷 246", "fit": "想清楚看到粉刺清潔過程", "url": "https://s.shopee.tw/2BGeNcYKhe", "intro": "附螢幕的黑頭儀，用負壓吸附，清潔時可以從畫面看到過程。", "pts": ["6 種吸頭", "三檔模式", "敏感肌、有傷口或發炎時先別用"]},
-{"cat": "美容儀", "name": "黑頭美容儀 毛孔清潔儀（隔日達・附發票）", "price": 398, "sold": "月銷 123", "fit": "小資入門的毛孔清潔小物", "url": "https://s.shopee.tw/2VtUmEoasP", "intro": "小氣泡水循環的毛孔清潔儀，價格親民，適合第一次嘗試黑頭儀的人。", "pts": ["小氣泡水循環", "三檔力度", "附發票"]},
-{"cat": "保健", "name": "天然保健所 極淨魚油（濃度 95% 以上）", "price": 1380, "sold": "已售 20萬+", "fit": "想要高濃度的人", "url": "https://s.shopee.tw/6L6DLCkXpx", "intro": "賣場標示 Omega-3 濃度 95% 以上的魚油，蝦皮上的高銷量款。", "pts": ["高濃度標示", "人氣熱銷款", "依包裝建議方式食用"]},
-{"cat": "保健", "name": "rTG 挪威魚油 Omega-3（60 顆）", "price": 528, "sold": "已售 1萬+", "fit": "重視 CP 值的人", "url": "https://s.shopee.tw/6q2Tw8d0rb", "intro": "rTG 型的挪威魚油，一瓶 60 顆，價格與份量平衡。", "pts": ["rTG 型", "60 顆／瓶", "依包裝建議方式食用"]},
-{"cat": "保健", "name": "rTG 超臨界專利深海魚油（小顆）", "price": 379, "sold": "已售 3萬+", "fit": "預算有限的小資族", "url": "https://s.shopee.tw/8fU87WJbC3", "intro": "rTG 型深海魚油，小顆設計比較好吞，是三款魚油中最平價的一款。", "pts": ["rTG 型", "小顆設計", "依包裝建議方式食用"]},
-{"cat": "寵物", "name": "博朗氏 貓飼料 6 公斤", "price": 549, "sold": "已售 1,000+", "fit": "多貓家庭、想要大包划算", "url": "https://s.shopee.tw/gRqat7GhW", "intro": "6 公斤大包裝貓飼料，平均下來每公斤比較划算，適合家裡有多隻貓。", "pts": ["6 公斤大包裝", "多貓家庭適用", "開封後記得密封保存"]},
-{"cat": "寵物", "name": "Halo 嘿囉 無穀貓飼料 300g", "price": 169, "sold": "已售 2,000+", "fit": "先買小包試吃的挑嘴貓", "url": "https://s.shopee.tw/AAIvuLoq4x", "intro": "無穀配方的小包裝貓飼料，適合先讓挑嘴貓試吃看看。", "pts": ["無穀配方", "300g 小包裝", "換糧建議循序漸進"]}
+{"cat": "美容儀", "name": "可視化黑頭儀（現貨隔日達）", "price": 418, "sold": "月銷 246", "fit": "想清楚看到粉刺清潔過程", "url": "https://s.shopee.tw/2BGeNcYKhe", "intro": "小氣泡水循環的黑頭儀，負壓吸附搭配水箱設計（依賣場說明），現貨隔日到。", "pts": ["小氣泡水循環＋水箱", "附多種吸頭", "敏感肌、有傷口或發炎時先別用"], "img": "bh1"},
+{"cat": "美容儀", "name": "黑頭美容儀 毛孔清潔儀（隔日達・附發票）", "price": 398, "sold": "月銷 123", "fit": "小資入門的毛孔清潔小物", "url": "https://s.shopee.tw/2VtUmEoasP", "intro": "小氣泡水循環的毛孔清潔儀，價格親民，適合第一次嘗試黑頭儀的人。", "pts": ["約 30／50／75 kPa 三檔吸力（依賣場說明）", "小氣泡水循環", "附發票"], "img": "bh2"},
+{"cat": "保健", "name": "天然保健所 極淨魚油（濃度 95% 以上）", "price": 1380, "sold": "已售 20萬+", "fit": "想要高濃度的人", "url": "https://s.shopee.tw/6L6DLCkXpx", "intro": "賣場標示 Omega-3 濃度 95% 以上的魚油，蝦皮上的高銷量款。", "pts": ["高濃度標示", "人氣熱銷款", "依包裝建議方式食用"], "img": "fo1"},
+{"cat": "保健", "name": "rTG 挪威魚油 Omega-3（60 顆）", "price": 498, "sold": "已售 1萬+", "fit": "重視 CP 值的人", "url": "https://s.shopee.tw/6q2Tw8d0rb", "intro": "rTG 型的挪威魚油，一瓶 60 顆，價格與份量平衡。", "pts": ["rTG 型", "60 顆／瓶", "依包裝建議方式食用"], "img": "fo2"},
+{"cat": "保健", "name": "rTG 超臨界專利深海魚油（小顆）", "price": 379, "sold": "已售 3萬+", "fit": "預算有限的小資族", "url": "https://s.shopee.tw/8fU87WJbC3", "intro": "rTG 型深海魚油，小顆設計比較好吞，是三款魚油中最平價的一款。", "pts": ["rTG 型", "小顆設計，30 顆／盒", "依包裝建議方式食用"], "img": "fo3"},
+{"cat": "寵物", "name": "博朗氏 貓飼料 6 公斤", "price": 542, "sold": "已售 1,000+", "fit": "多貓家庭、想要大包划算", "url": "https://s.shopee.tw/gRqat7GhW", "intro": "6 公斤大包裝貓飼料，平均下來每公斤比較划算，適合家裡有多隻貓。", "pts": ["6 公斤大包裝", "多貓家庭適用", "開封後記得密封保存"], "img": "cat1"},
+{"cat": "寵物", "name": "Halo 嘿囉 無穀貓飼料 300g", "price": 169, "sold": "已售 2,000+", "fit": "先買小包試吃的挑嘴貓", "url": "https://s.shopee.tw/AAIvuLoq4x", "intro": "無穀配方的小包裝貓飼料，適合先讓挑嘴貓試吃看看。", "pts": ["無穀配方", "300g 小包裝", "換糧建議循序漸進"], "img": "cat2"}
 ];
 const icons={"生活小物":'<path d="M3 12c0-3 2-5 5-5h8c3 0 5 2 5 5s-2 5-5 5H8c-3 0-5-2-5-5z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="12" r="1.6" fill="currentColor"/><circle cx="15.5" cy="12" r="1.6" fill="currentColor"/>',"美容儀":'<rect x="9" y="3" width="6" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="7.5" r="1.8" fill="currentColor"/>',"保健":'<rect x="4" y="9" width="16" height="7" rx="3.5" transform="rotate(-35 12 12.5)" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 9.5l3.5 5" stroke="currentColor" stroke-width="1.8"/>',"寵物":'<circle cx="7" cy="9" r="2" fill="currentColor"/><circle cx="12" cy="7" r="2" fill="currentColor"/><circle cx="17" cy="9" r="2" fill="currentColor"/><path d="M7 17c0-3 2.5-5 5-5s5 2 5 5c0 1.5-1.5 2-2.5 2h-5C8.5 19 7 18.5 7 17z" fill="currentColor"/>'};
 const ico=c=>`<svg viewBox="0 0 24 24" aria-hidden="true">${icons[c]||icons["生活小物"]}</svg>`;
