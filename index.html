@@ -154,7 +154,7 @@ list.innerHTML=rows.length?rows.map(i=>`<article class="card">
 </article>`).join(""):'<p class="empty">找不到符合的商品</p>';
 }
 function openItem(i){
-dc.innerHTML=`${IMG[i.img]?`<img class="dimg" src="${IMG[i.img]}" alt="${esc(i.name)} 商品圖">`:`<div class="dph">${ico(i.cat)}</div>`}
+dc.innerHTML=`${IMG[i.img]?`<img class="dimg" src="${i.img}.jpg" alt="${esc(i.name)} 商品圖">`:`<div class="dph">${ico(i.cat)}</div>`}
 <div class="dbody"><div class="chips"><span class="cat">${esc(i.cat)}</span>${i.isNew?'<span class="isnew">NEW</span>':""}</div>
 <h2 id="dname">${esc(i.name)}</h2>
 <p>${esc(i.intro)}</p>
